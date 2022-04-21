@@ -12,9 +12,9 @@
       alt=""
       class="src"
     >
-    <button @click="add">
+    <el-button @click="add">
       点击
-    </button>
+    </el-button>
   </div>
 </template>
 
