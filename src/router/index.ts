@@ -1,10 +1,21 @@
 import { createRouter, createWebHashHistory, RouteRecordRaw } from 'vue-router'
+import Layout from '@/layout/Layout.vue'
+import productRoutes from './modules/product'
 const routes:RouteRecordRaw[] = [
   {
     path: '/',
-    name: 'home',
-    component: () => import('@/views/home/index.vue')
+    component: Layout,
+    children: [
+      {
+        path: '', // 默认子路由
+        name: 'home',
+        component: () => import('@/views/home/index.vue')
+      },
+      productRoutes
+    ]
+
   },
+
   {
     path: '/login',
     name: 'login',
