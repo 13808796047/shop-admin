@@ -2,12 +2,14 @@
  * new page
  * @author: Summer
  * @since: 2022-04-21
- * App.vue
+ * index.vue
 -->
 <template>
-  <router-view />
+  <div class="container">
+    登录
+  </div>
 </template>
 
 <script setup lang="ts"></script>
 
-<style scoped></style>
+<style scoped lang="scss"></style>

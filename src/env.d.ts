@@ -6,3 +6,9 @@ declare module '*.vue' {
   const component: DefineComponent<{}, {}, any>
   export default component
 }
+
+// 环境变量类型
+ // eslint-disable-next-line no-unused-vars
+ interface ImportMetaEnv{
+  VITE_API_BASEURL:string
+}
