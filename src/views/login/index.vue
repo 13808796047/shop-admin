@@ -17,7 +17,7 @@
       </div>
       <el-form-item prop="account">
         <el-input
-          v-model="user.account"
+          v-model="user.username"
           placeholder="请输入用户名"
         >
           <template #prefix>
@@ -27,7 +27,7 @@
       </el-form-item>
       <el-form-item prop="pwd">
         <el-input
-          v-model="user.pwd"
+          v-model="user.password"
           type="password"
           placeholder="请输入密码"
         >
@@ -36,7 +36,7 @@
           </template>
         </el-input>
       </el-form-item>
-      <el-form-item prop="imgcode">
+      <!-- <el-form-item prop="imgcode">
         <div class="imgcode-wrap">
           <el-input
             v-model="user.imgcode"
@@ -53,7 +53,7 @@
             @click="loadCaptcha"
           >
         </div>
-      </el-form-item>
+      </el-form-item> -->
       <el-form-item>
         <el-button
           class="submit-button"
@@ -70,46 +70,42 @@
 
 <script lang="ts" setup>
 import { useRouter } from 'vue-router'
-import { onMounted, reactive, ref } from 'vue'
-import { getCaptcha, login } from '@/api/common'
-// import { IElForm, FormRule } from '@/types/elementPlus'
-import { ElForm } from 'element-plus'
+import { reactive, ref } from 'vue'
+import { login } from '@/api/common'
+import { IELForm, IFormRule } from '@/types/element-plus'
 import { useStore } from '@/store'
-import { stringify } from 'json5'
+// import { stringify } from 'json5'
 const user = reactive({
-  account: 'admin',
-  pwd: '123456',
-  imgcode: ''
+  username: 'admin',
+  password: '900602'
+  // imgcode: ''
 })
 const router = useRouter()
 const loading = ref(false)
 // InstanceType 关键字用于获取实例类型，
-const form = ref<InstanceType<typeof ElForm>|null>(null)
+const form = ref<IELForm|null>(null)
 const store = useStore()
-// const rules = ref<FormRule>({
-//   account: [
-//     { required: true, message: '请输入账号', trigger: 'change' }
-//   ],
-//   pwd: [
-//     { required: true, message: '请输入密码', trigger: 'change' }
-//   ],
-//   imgcode: [
-//     { required: true, message: '请输入验证码', trigger: 'change' }
-//   ]
-// })
-const captcha = ref('')
+const rules = ref<IFormRule>({
+  username: [
+    { required: true, message: '请输入账号', trigger: 'change' }
+  ],
+  password: [
+    { required: true, message: '请输入密码', trigger: 'change' }
+  ]
+})
+// const captcha = ref('')
 // 1. 处理验证码
 
-onMounted(() => {
-  loadCaptcha()
-})
+// onMounted(() => {
+//   loadCaptcha()
+// })
 
-const loadCaptcha = async () => {
-  // 获取后台返回的二进制文件
-  const data = await getCaptcha()
-  // 将二进制转换为
-  captcha.value = URL.createObjectURL(data)
-}
+// const loadCaptcha = async () => {
+//   // 获取后台返回的二进制文件
+//   const data = await getCaptcha()
+//   // 将二进制转换为
+//   captcha.value = URL.createObjectURL(data)
+// }
 
 // 2. 登录
 
@@ -121,9 +117,10 @@ const handleSubmit = async () => {
     return
   }
   loading.value = true
-  const data = await login(user)
+  const data = await login(user).finally(() => { loading.value = false })
   console.log(data)
 
+  store.commit('setUser', data.token)
   router.replace({
     name: 'home'
   })

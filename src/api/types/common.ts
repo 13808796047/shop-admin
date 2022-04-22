@@ -8,24 +8,7 @@ export interface loginUserInfo {
   id: number
 }
 
-export interface ILoginInfo {
-  token: string
-  expires_time: number
-  menu: object[]
-  logo: string
-  logo_square: string
-  newOrderAudioLink: string
-  unique_auth: string[]
-  user_info: loginUserInfo
-  version: string
-}
-
-export interface IGetBasic {
-  status: string
-  msg: string
-  data: {
-    logo: string
-    logo_square: string
-  }
-  site_name: string
+export interface IUserInfo{
+  nickname:string,
+  username:string,
 }

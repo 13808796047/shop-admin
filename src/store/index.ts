@@ -1,9 +1,12 @@
+import { setItem, getItem } from './../utils/storage'
 import { InjectionKey } from 'vue'
 import { createStore, Store, useStore as baseUseStore } from 'vuex'
-
+import { IUserInfo } from '@/api/types/common'
+import { USER } from '@/utils/constants'
 const state = {
   counter: 1,
-  isCollapse: false
+  isCollapse: false,
+  user: getItem<IUserInfo>(USER)
 }
 // 类型
 export type State = typeof state
@@ -15,15 +18,20 @@ const store = createStore<State>({
     return {
       // all these properties will have their type inferred automatically
       counter: 1,
-      isCollapse: false
+      isCollapse: false,
+      user: JSON.parse(window.localStorage.getItem('user') || 'null')
     }
   },
   mutations: {
     increment (state) {
       state.counter++
     },
-    setIsCollapse (state, payload) {
-      state.isCollapse = payload
+    toggleMenu (state) {
+      state.isCollapse = !state.isCollapse
+    },
+    setUser (state, payload) {
+      state.user = payload
+      setItem(USER, state.user)
     }
   }
 })

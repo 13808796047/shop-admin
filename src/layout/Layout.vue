@@ -22,7 +22,7 @@
 
 <script setup lang="ts">
 import Menu from './components/Menu.vue'
-import Header from './header/Index.vue'
+import Header from './components/header/index.vue'
 
 </script>
 
@@ -40,7 +40,5 @@ import Header from './header/Index.vue'
 .el-container{
     height: 100vh;
 }
-.el-row {
-  margin-top: 20px;
-}
+
 </style>

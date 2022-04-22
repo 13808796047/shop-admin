@@ -4,9 +4,8 @@
 import { IAuthorizationResponse } from './types/common'
 import request from '@/utils/request'
 export const login = (data:{
-    account:string
-    pwd :string
-    imgcode:string
+    username:string
+    password :string
   }) => {
 //   request({
 //     method: 'GET',
@@ -14,7 +13,8 @@ export const login = (data:{
 //   })
   return request<IAuthorizationResponse>({
     method: 'POST',
-    url: '/authorizations'
+    url: '/authorizations',
+    data
   })
 }
 // export function userLogin (data: {account: string, pwd: string, imgcode: string}) {
