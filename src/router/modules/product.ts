@@ -4,27 +4,44 @@ const routes:RouteRecordRaw =
   {
     path: 'product',
     name: '',
+
     component: RouterView,
+    meta: { // 自定义路由元数据
+      title: '商品管理'
+
+    },
     children: [
       {
         path: 'list',
-        name: '商品管理',
-        component: () => import('@/views/product/list/index.vue')
+        component: () => import('@/views/product/list/index.vue'),
+        meta: { // 自定义路由元数据
+          title: '商品列表'
+
+        }
       },
       {
         path: 'category',
-        name: '商品分类',
-        component: () => import('@/views/product/category/index.vue')
+        component: () => import('@/views/product/category/index.vue'),
+        meta: { // 自定义路由元数据
+          title: '商品分类'
+
+        }
       },
       {
         path: 'attr',
-        name: '商品规格',
-        component: () => import('@/views/product/attr/index.vue')
+        component: () => import('@/views/product/attr/index.vue'),
+        meta: { // 自定义路由元数据
+          title: '商品规格'
+
+        }
       },
       {
         path: 'replay',
-        name: '商品评论',
-        component: () => import('@/views/product/replay/index.vue')
+        component: () => import('@/views/product/replay/index.vue'),
+        meta: { // 自定义路由元数据
+          title: '商品评论'
+
+        }
       }
     ]
   }

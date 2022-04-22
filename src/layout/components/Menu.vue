@@ -11,56 +11,52 @@
     default-active="2"
     text-color="#fff"
     router
+    :collapse="isCollapse"
   >
-    <!-- <el-sub-menu index="/">
-      <template #title>
-        <el-icon><location /></el-icon>
-        <span>首页</span>
-      </template>
-      <el-menu-item-group title="Group One">
-        <el-menu-item index="1-1">
-          item one
-        </el-menu-item>
-        <el-menu-item index="1-2">
-          item one
-        </el-menu-item>
-      </el-menu-item-group>
-      <el-menu-item-group title="Group Two">
-        <el-menu-item index="1-3">
-          item three
-        </el-menu-item>
-      </el-menu-item-group>
-      <el-sub-menu index="1-4">
-        <template #title>
-          item four
-        </template>
-        <el-menu-item index="1-4-1">
-          item one
-        </el-menu-item>
-      </el-sub-menu>
-    </el-sub-menu> -->
     <el-menu-item index="/">
-      <el-icon><icon-menu /></el-icon>
+      <el-icon><home-filled /></el-icon>
       <span>首页</span>
     </el-menu-item>
-    <el-menu-item
-      index="3"
-      disabled
-    >
-      <el-icon><document /></el-icon>
-      <span>Navigator Three</span>
-    </el-menu-item>
-    <el-menu-item index="4">
-      <el-icon><setting /></el-icon>
-      <span>Navigator Four</span>
-    </el-menu-item>
+    <el-sub-menu index="/product">
+      <template #title>
+        <el-icon><goods /></el-icon>
+        <span>商品管理</span>
+      </template>
+      <el-menu-item-group>
+        <el-menu-item index="/product/list">
+          <el-icon><list /></el-icon>
+          <span>商品列表</span>
+        </el-menu-item>
+        <el-menu-item index="/product/category">
+          <el-icon><fold /></el-icon>
+          <span>商品分类</span>
+        </el-menu-item>
+        <el-menu-item index="/product/attr">
+          <el-icon><document /></el-icon>
+          <span>商品规格</span>
+        </el-menu-item>
+        <el-menu-item index="/product/replay">
+          <el-icon><chat-round /></el-icon>
+          <span>商品评论</span>
+        </el-menu-item>
+      </el-menu-item-group>
+    </el-sub-menu>
   </el-menu>
 </template>
 
-<script setup lang="ts"></script>
+<script setup lang="ts">import { computed } from 'vue'
+
+import { useStore } from 'vuex'
+const store = useStore()
+const isCollapse = computed(() => store.state.isCollapse)
+</script>
 
 <style scoped lang="scss">
 .el-menu{
     border-right: none;
+}
+.el-menu:not(.el-menu--collapse) {
+  width: 200px;
+  min-height: 400px;
 }
 </style>

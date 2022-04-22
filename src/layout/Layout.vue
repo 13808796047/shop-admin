@@ -5,11 +5,13 @@
 -->
 <template>
   <el-container>
-    <el-aside width="200px">
+    <el-aside>
       <Menu />
     </el-aside>
     <el-container>
-      <el-header>Header</el-header>
+      <el-header>
+        <Header />
+      </el-header>
       <el-main>
         <!-- 子路由出口 -->
         <router-view />
@@ -20,13 +22,16 @@
 
 <script setup lang="ts">
 import Menu from './components/Menu.vue'
+import Header from './header/Index.vue'
+
 </script>
 
 <style scoped lang="scss">
 .el-header,.el-footer{
-    background-color: #b3c0d1;
+    background-color: #fff
 }
 .el-aside{
+  width: auto;
    background-color: #304156;
 }
 .el-main{
@@ -34,5 +39,8 @@ import Menu from './components/Menu.vue'
 }
 .el-container{
     height: 100vh;
+}
+.el-row {
+  margin-top: 20px;
 }
 </style>

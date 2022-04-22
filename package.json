@@ -9,8 +9,11 @@
     "lint": "eslint src/**/*.{js,jsx,vue,ts,tsx} --fix"
   },
   "dependencies": {
+    "@element-plus/icons-vue": "^1.1.4",
+    "@types/nprogress": "^0.2.0",
     "axios": "^0.26.1",
     "element-plus": "^2.1.10",
+    "nprogress": "^0.2.0",
     "vue": "^3.2.25",
     "vue-router": "^4.0.14",
     "vuex": "^4.0.2"
